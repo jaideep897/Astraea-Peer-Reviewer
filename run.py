@@ -43,6 +43,10 @@ if not os.path.exists("AstraeaV3_env"):
 # ───── Standard Startup ─────
 from AstraeaV3_env.server.app import app
 import uvicorn
+from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
+
+# Fix for Hugging Face Mixed Content Errors (HTTPS Proxy)
+app.add_middleware(ProxyHeadersMiddleware, trusted_hosts="*")
 
 # Load environment variables (.env)
 if os.path.exists(".env"):
