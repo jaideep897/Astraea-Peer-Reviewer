@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "peer-review-env"
+version = "1.0.0"
+description = "A scientific peer review RL environment for the Meta OpenEnv initiative."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "pydantic-settings",
+    "python-dotenv",
+    "openai",
+    "openenv-core>=0.2.0"
+]
+
+[project.scripts]
+server = "AstraeaV3_env.server.app:main"
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-asyncio"
+]

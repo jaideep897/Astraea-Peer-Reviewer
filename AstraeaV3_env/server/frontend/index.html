@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTRAEA | Research Auditor OS</title>
+    <link rel="stylesheet" href="styles.css?v=V3_SPECTRAL_ULTRA_FIX_V4">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="v3-os-vibration">
+    <!-- Master SVG Overlay for Neural Cross-Linking -->
+    <svg id="neuralThreads" class="threads-overlay"></svg>
+    
+    <!-- Neural Matrix Background -->
+    <div class="neural-canvas">
+        <div class="grid-overlay"></div>
+        <div class="neural-matrix" id="neuralMatrix"></div>
+        <div class="glow-point p1"></div>
+        <div class="glow-point p2"></div>
+        <div class="glitch-overlay" id="glitchOverlay"></div>
+    </div>
+
+    <div class="app-shell" id="appShell" style="opacity: 0;">
+        <header class="os-header">
+            <div class="os-brand">
+                <div class="os-logo">
+                    <div class="logo-inner"></div>
+                </div>
+                <div class="os-title">
+                    <h1 class="main">ASTRAEA <b>V3</b></h1>
+                </div>
+            </div>
+
+            <nav class="os-nav">
+                <div class="nav-stat-group">
+                    <div class="stat-unit">
+                        <span class="tag">SCI_INTEGRITY_SII</span>
+                        <div class="stat-visual">
+                            <div class="sii-gauge-container">
+                                <svg viewBox="0 0 36 36" class="sii-svg">
+                                    <circle class="track" cx="18" cy="18" r="16"></circle>
+                                    <circle id="siiIndicator" class="progress" cx="18" cy="18" r="16" stroke-dasharray="100, 100"></circle>
+                                </svg>
+                            </div>
+                            <span id="siiValue" class="val">100</span><span class="unit">%</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-unit">
+                        <span class="tag">REP_SCORE</span>
+                        <div class="stat-visual">
+                            <svg viewBox="0 0 36 36" class="fidelity-svg">
+                                <circle class="track" cx="18" cy="18" r="16"></circle>
+                                <circle id="rewardCircle" class="progress" cx="18" cy="18" r="16" stroke-dasharray="0, 100"></circle>
+                            </svg>
+                            <span id="rewardValue" class="val">0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- PALE: Neural Progression -->
+                    <div class="stat-unit xp-progression">
+                        <span class="tag">NEURAL_LEVEL</span>
+                        <div class="stat-visual">
+                            <span id="expertLevel" class="val level-val">1</span>
+                            <div class="xp-bar-wrap">
+                                <div id="xpBar" class="xp-bar-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-actions">
+                    <!-- Task Selector (Custom) -->
+                    <div class="os-select-wrap" id="taskSelector">
+                        <div class="trigger">
+                            <span class="curr">TASK 1(Easy ): AUDIT WARMUP</span>
+                            <span class="icon">⊘</span>
+                        </div>
+                        <div class="options">
+                            <div class="opt active" data-val="task1">TASK 1(Easy ): AUDIT WARMUP</div>
+                            <div class="opt" data-val="task2">TASK 2(Medium): SOUNDNESS CHECK</div>
+                            <div class="opt" data-val="task3">TASK 3(Hard): SCORE CALIBRATION</div>
+                            <div class="opt" data-val="task4">TASK 4(Elite): PYTORCH RIGOR</div>
+                            <div class="opt" data-val="task_bonus_1">TASK 5(Special): FINAL REVIEW</div>
+                        </div>
+                        <input type="hidden" id="taskSelect" value="task1">
+                    </div>
+
+                    <button id="resetBtn" class="os-btn primary glitch-target">RESET ENV</button>
+                </div>
+            </nav>
+        </header>
+
+        <main class="os-grid">
+            <!-- Sidebar: Manuscript Explorer -->
+            <section class="os-panel explorer">
+                <div class="panel-tag">MANUSCRIPT_EXPLORER</div>
+                <div class="explorer-content">
+                    <div class="paper-header">
+                        <h2 id="paperTitle">PENDING_HANDSHAKE</h2>
+                    </div>
+                    
+                    <div class="paper-nav scroll-hide" id="sectionTabs"></div>
+                    
+                    <div class="paper-viewport glass-frost">
+                        <div id="sectionContent" class="manuscript-body">
+                            Awaiting neural synchronization with manuscript data...
+                        </div>
+                    </div>
+
+                    <!-- Relocated Neural Orb: Left Corner Anchor -->
+                    <div id="hintBtn" class="os-neural-orb explorer-anchor">
+                        <div class="orb-ring ring-1"></div>
+                        <div class="orb-ring ring-2"></div>
+                        <div class="orb-core">
+                            <span class="icon">🧬</span>
+                            <span class="txt">DEEP_SCAN</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Center: Tactical Audit -->
+            <section class="os-panel tactical">
+                <div class="panel-tag">TACTICAL_AUDIT_CONSOLE</div>
+                <div class="tactical-stack styled-scroll">
+                    <!-- Flag Tool -->
+                    <div class="t-card">
+                        <div class="t-card-header">
+                            <span class="num">01</span>
+                            <h3>FLAG_DISCREPANCY</h3>
+                        </div>
+                        <div class="t-body">
+                            <div class="os-select-wrap full" id="concernSelector">
+                                <div class="trigger">
+                                    <span class="curr">Reproducibility</span>
+                                    <span class="icon">⊘</span>
+                                </div>
+                                <div class="options">
+                                    <div class="opt active" data-val="reproducibility">Reproducibility</div>
+                                    <div class="opt" data-val="novelty">Novelty</div>
+                                    <div class="opt" data-val="soundness">Soundness</div>
+                                    <div class="opt" data-val="missing_baseline">Missing Baseline</div>
+                                    <div class="opt" data-val="data_leakage">Data Leakage</div>
+                                    <div class="opt" data-val="statistical">Statistical</div>
+                                    <div class="opt" data-val="gradient_issue">PyTorch: Gradients</div>
+                                    <div class="opt" data-val="device_mismatch">PyTorch: Device</div>
+                                </div>
+                                <input type="hidden" id="concernType" value="reproducibility">
+                            </div>
+
+                            <div class="input-row">
+                                <input type="text" id="concernLocation" class="os-input" placeholder="LOCATION_ID">
+                            </div>
+                            <textarea id="concernDesc" class="os-textarea" placeholder="TECHNICAL_DESCRIPTION"></textarea>
+                            
+                            <button id="flagBtn" class="os-btn accent">EXECUTE_FLAG</button>
+                        </div>
+                    </div>
+
+                    <!-- Score Tool -->
+                    <div class="t-card">
+                        <div class="t-card-header">
+                            <span class="num">02</span>
+                            <h3>SCORE_CALIBRATION</h3>
+                        </div>
+                        <div class="t-body">
+                            <div class="input-group">
+                                <div class="os-select-wrap" id="dimSelector">
+                                    <div class="trigger">
+                                        <span class="curr">Novelty</span>
+                                        <span class="icon">⊘</span>
+                                    </div>
+                                    <div class="options">
+                                        <div class="opt active" data-val="novelty">Novelty</div>
+                                        <div class="opt" data-val="soundness">Soundness</div>
+                                        <div class="opt" data-val="presentation">Presentation</div>
+                                        <div class="opt" data-val="contribution">Contribution</div>
+                                    </div>
+                                    <input type="hidden" id="scoreDimension" value="novelty">
+                                </div>
+                                <input type="number" id="scoreVal" step="0.5" class="os-input center-text" placeholder="5.0">
+                            </div>
+                            <button id="scoreBtn" class="os-btn ghost">ASSIGN_SCORE</button>
+                        </div>
+                    </div>
+
+                    <!-- Orb Relocated to Explorer -->
+
+                    <!-- Decision -->
+                    <div class="t-card">
+                        <div class="t-card-header">
+                            <span class="num">03</span>
+                            <h3>FINAL_AUDIT_LOG</h3>
+                        </div>
+                        <div class="t-body">
+                            <div class="os-select-wrap full" id="decSelector">
+                                <div class="trigger">
+                                    <span class="curr">ACCEPT</span>
+                                    <span class="icon">⊘</span>
+                                </div>
+                                <div class="options">
+                                    <div class="opt active" data-val="accept">ACCEPT</div>
+                                    <div class="opt" data-val="minor_revision">MINOR_REVISION</div>
+                                    <div class="opt" data-val="major_revision">MAJOR_REVISION</div>
+                                    <div class="opt" data-val="reject">REJECT</div>
+                                </div>
+                                <input type="hidden" id="decisionVal" value="accept">
+                            </div>
+                            <div class="btn-stack" style="display: flex; flex-direction: column; gap: 12px;">
+                                <button id="submitBtn" class="os-btn decision">SUBMIT_AUDIT</button>
+                                <button id="graderBtn" class="os-btn result" style="display: none;">VERIFY_GRADE</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right: Systems Hud -->
+            <section class="os-panel intelligence">
+                <div class="panel-tag">INTELLIGENCE_HUD</div>
+                <div class="hud-stack styled-scroll">
+                    <!-- Merit Trajectory Chart -->
+                    <div class="hud-card chart-module">
+                        <div class="hud-header">MERIT_TRAJECTORY</div>
+                        <div class="chart-container">
+                            <svg id="meritChart" viewBox="0 0 300 100" preserveAspectRatio="none">
+                                <path id="chartPath" d="M0,100 L0,100" fill="none" stroke="var(--c-accent)" stroke-width="2"></path>
+                                <path id="chartArea" d="M0,100 L0,100" fill="url(#chartGrad)" opacity="0.1"></path>
+                                <defs>
+                                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="var(--c-accent)"></stop>
+                                        <stop offset="100%" stop-color="transparent"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="chart-footer">
+                            <span>SESSION_START</span>
+                            <span id="alignmentVal">ALIGNMENT: 0%</span>
+                        </div>
+                    </div>
+
+                    <!-- Circular Command Status -->
+                    <div class="status-circle-wrap">
+                        <div class="floating-circle">
+                            <div class="circle-overlay"></div>
+                            <div class="hud-header">STATUS</div>
+                            <div class="progress-zone">
+                                <div class="step-label">CYCLE: <span id="stepCounter">0/20</span></div>
+                                <div id="lastActionReward" class="delta-val">0.000</div>
+                                <div class="label">FIDELITY_DELTA</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feedback Card -->
+                    <div class="hud-card glass-glow">
+                        <div class="hud-header">NEURAL_FEEDBACK</div>
+                        <div id="scientificFeedback" class="feedback-txt">
+                            Awaiting tactical engagement...
+                        </div>
+                    </div>
+
+                    <!-- Audit Log -->
+                    <div class="hud-card log-module grow-log">
+                        <div class="hud-header">TRANSACTION_PROTOCOL</div>
+                        <div id="logPanel" class="terminal-log styled-scroll"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Spectral Scan Report Modal (Detailed Version) -->
+    <div id="scanReportModal" class="scan-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="glitch-title">SPECTRAL_AUDIT_REPORT</div>
+                <div class="report-meta">
+                    <span>PROTOCOL: <b id="reportProtocolId">PID_7860</b></span>
+                    <span>TIMESTAMP: <b id="reportTime">23:00:00</b></span>
+                </div>
+            </div>
+            
+            <div class="modal-grid">
+                <div class="report-section">
+                    <span class="label">DISCREPANCY_TYPE</span>
+                    <div id="reportType" class="value Highlight">UNKNOWN</div>
+                </div>
+                <div class="report-section">
+                    <span class="label">SEVERITY_LEVEL</span>
+                    <div class="severity-container">
+                        <div id="reportSeverityBar" class="severity-fill" style="width: 50%"></div>
+                        <span id="reportSeverityVal" class="severity-num">50%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="report-section">
+                <span class="label">COORDINATES (MANUSCRIPT_LOCATION)</span>
+                <div id="reportLocation" class="value location-tag">TARGETING...</div>
+            </div>
+
+            <div class="report-section">
+                <span class="label">NEURAL_DEEP_ANALYSIS</span>
+                <p id="reportDescription" class="analysis-txt">Decryption in progress...</p>
+            </div>
+
+            <div class="report-section">
+                <span class="label">AUDITOR_RECOMMENDATION</span>
+                <div id="reportAction" class="action-item">NO_RECOMMENDATION</div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="confidence-meter">
+                    <span class="label">AI_CONFIDENCE:</span>
+                    <span id="reportConfidence" class="conf-val">94.2%</span>
+                </div>
+                <button id="closeReportBtn" class="os-btn primary">RESUME_AUDIT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Web Audio & UI Logic -->
+    <script src="app.js?v=V4_SPECTRAL_RESILIENCE_FINAL"></script>
+</body>
+</html>

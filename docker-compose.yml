@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  astraea-os:
+    build: .
+    container_name: astraea_peer_review
+    ports:
+      - "7860:7860"
+    env_file:
+      - .env
+    environment:
+      - PORT=7860
+      - HOST=0.0.0.0
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7860/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

@@ -1,0 +1,43 @@
+{
+    "flaw_types": {
+        "reproducibility": {
+            "success": 12,
+            "fail": 15
+        },
+        "novelty": {
+            "success": 2,
+            "fail": 1
+        },
+        "soundness": {
+            "success": 3,
+            "fail": 2
+        },
+        "missing_baseline": {
+            "success": 35,
+            "fail": 1
+        },
+        "data_leakage": {
+            "success": 157,
+            "fail": 3
+        },
+        "statistical": {
+            "success": 12,
+            "fail": 1
+        },
+        "gradient_issue": {
+            "success": 5,
+            "fail": 0
+        },
+        "device_mismatch": {
+            "success": 0,
+            "fail": 0
+        },
+        "non_deterministic": {
+            "success": 2,
+            "fail": 0
+        }
+    },
+    "total_xp": 317.5,
+    "level": 11,
+    "blind_spots": []
+}

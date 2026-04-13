@@ -1,0 +1,89 @@
+---
+title: Astraea Scientific Peer Review
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+tags:
+  - openenv
+app_port: 7860
+
+spec_version: 1
+name: astraea_peer_review
+version: 3.6.0
+description: "Astraea: A high-fidelity Scientific Peer Review environment for auditing ML research papers and PyTorch code implementations."
+author: "Astraea Team"
+license: "MIT"
+
+entry_point: "AstraeaV3_env.server.environment:ScientificPeerReviewEnv"
+
+task_ids:
+  - task1
+  - task2
+  - task3
+  - task4
+
+action_space:
+  type: "dict"
+  description: "Reviewer actions including flagging concerns, assigning scores, and submitting decisions."
+  properties:
+    action_type:
+      type: "enum"
+      values: ["request_clarification", "flag_concern", "assign_score", "write_review_segment", "submit_decision"]
+    concern_type:
+      type: "enum"
+      values: ["reproducibility", "novelty", "soundness", "missing_baseline", "data_leakage", "statistical", "gradient_issue", "non_deterministic", "clarity", "equation_error"]
+      nullable: true
+    concern_location:
+      type: "string"
+      nullable: true
+    concern_severity:
+      type: "float"
+      min: 0.0
+      max: 1.0
+      nullable: true
+    dimension:
+      type: "enum"
+      values: ["novelty", "soundness", "presentation", "contribution"]
+      nullable: true
+    score:
+      type: "float"
+      min: 0.0
+      max: 10.0
+      nullable: true
+    decision:
+      type: "enum"
+      values: ["accept", "minor_revision", "major_revision", "reject"]
+      nullable: true
+
+observation_space:
+  type: "dict"
+  properties:
+    episode_id:
+      type: "string"
+    paper_id:
+      type: "string"
+    paper_title:
+      type: "string"
+    sections:
+      type: "dict"
+    flagged_concerns:
+      type: "list"
+    dimension_scores:
+      type: "dict"
+    step_count:
+      type: "int"
+    max_steps:
+      type: "int"
+    decision_submitted:
+      type: "bool"
+
+requirements:
+  - openenv-core
+  - pydantic
+  - fastapi
+  - uvicorn
+  - httpx
+  - python-dotenv
+  - openai
+  - psutil
